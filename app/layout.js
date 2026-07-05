@@ -4,10 +4,10 @@ import { Marcellus, Mulish } from 'next/font/google';
 const marcellus = Marcellus({ subsets: ['latin'], variable: '--font-marcellus', weight: '400' });
 const mulish = Mulish({ subsets: ['latin'], variable: '--font-mulish' });
 
-const __jsonld = {"@context":"https://schema.org","@type":"CollectionPage","name":"PortalUndangan","description":"Koleksi 8 undangan digital","url":"https://portal-undangan.vercel.app","isPartOf":{"@type":"WebSite","name":"PintuWeb","url":"https://pintuweb.id"}};
+const __jsonld = {"@context":"https://schema.org","@type":"CollectionPage","name":"PortalUndangan","description":"Koleksi 8 undangan digital","url":"https://undangan.pintuweb.com","isPartOf":{"@type":"WebSite","name":"PintuWeb","url":"https://pintuweb.com"}};
 
 export const metadata = {
-  metadataBase: new URL("https://portal-undangan.vercel.app"),
+  metadataBase: new URL("https://undangan.pintuweb.com"),
   title: "PortalUndangan — Undangan Digital untuk Setiap Momen",
   description: "PortalUndangan: 8 undangan digital dengan karakter berbeda — pernikahan, lamaran, khitanan, aqiqah, ulang tahun, wisuda, reuni, dan korporat.",
   applicationName: "PortalUndangan",
@@ -15,11 +15,11 @@ export const metadata = {
   authors: [{ name: "PortalUndangan" }],
   creator: "PortalUndangan",
   publisher: "PortalUndangan",
-  alternates: { canonical: "https://portal-undangan.vercel.app" },
+  alternates: { canonical: "https://undangan.pintuweb.com" },
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://portal-undangan.vercel.app",
+    url: "https://undangan.pintuweb.com",
     siteName: "PortalUndangan",
     title: "PortalUndangan — Undangan Digital untuk Setiap Momen",
     description: "PortalUndangan: 8 undangan digital dengan karakter berbeda — pernikahan, lamaran, khitanan, aqiqah, ulang tahun, wisuda, reuni, dan korporat.",

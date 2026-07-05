@@ -17,7 +17,7 @@ export default function PortalUndangan() {
       {/* Navbar */}
       <header className="sticky top-0 z-40 border-b border-goldu/30 bg-creamu/90 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
-          <a href="#" className="flex items-center gap-2.5 font-display text-xl">
+          <a href="/" className="flex items-center gap-2.5 font-display text-xl">
             <span className="segel grid h-9 w-9 place-items-center rounded-full text-creamu"><Mail size={15} /></span>
             PortalUndangan
           </a>
