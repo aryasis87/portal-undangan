@@ -1,325 +1,120 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
-import { FiArrowRight, FiZap } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
-
-// Moved templates data to a separate file for better organization
+import { Mail, ArrowDown, ArrowUpRight, MessageCircle, Heart } from 'lucide-react';
 import { templates } from './components/templates-data';
 
-// Animation variants
-const containerVariants = {
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.15,
-    },
-  },
-};
+const WA = 'https://wa.me/6281339908765?text=Halo%2C%20saya%20ingin%20memesan%20undangan%20digital%20di%20PortalUndangan';
 
-const itemVariants = {
-  hidden: { opacity: 0, scale: 0.9, y: 10 },
-  visible: { 
-    opacity: 1, 
-    scale: 1, 
-    y: 0, 
-    transition: { 
-      type: 'spring', 
-      stiffness: 120, 
-      damping: 15 
-    } 
-  },
-  hover: { 
-    scale: 1.01, 
-    boxShadow: "0 12px 25px rgba(37, 99, 235, 0.3)",
-    transition: { duration: 0.2 }
-  },
-  tap: { scale: 0.97 },
-  exit: { 
-    opacity: 0, 
-    scale: 0.9, 
-    y: 10, 
-    transition: { duration: 0.25 } 
-  },
-};
-
-const filterVariants = {
-  initial: { opacity: 0, y: -20 },
-  animate: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { 
-      duration: 0.4, 
-      ease: 'easeOut' 
-    } 
-  },
-  exit: { 
-    opacity: 0, 
-    y: 20, 
-    transition: { 
-      duration: 0.3, 
-      ease: 'easeIn' 
-    } 
-  },
-};
-
-const headerVariants = {
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.3,
-    }
-  }
-};
-
-const headerItem = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.5 } 
-  }
-};
-
-export default function TemplateGallery() {
-  const [activeCategory, setActiveCategory] = useState('All');
-  const categories = ['All', ...new Set(templates.map(t => t.category))];
-  const filteredTemplates = activeCategory === 'All' 
-    ? templates 
-    : templates.filter(t => t.category === activeCategory);
+export default function PortalUndangan() {
+  const [kat, setKat] = useState('Semua');
+  const kategoris = ['Semua', ...new Set(templates.map((t) => t.kategori))];
+  const list = kat === 'Semua' ? templates : templates.filter((t) => t.kategori === kat);
 
   return (
-    <div className="relative min-h-screen bg-white text-gray-900 overflow-hidden">
-      {/* Background shapes with reduced blur for better performance */}
-      <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
-        <div className="absolute top-10 left-10 w-48 h-48 rounded-full blur-xl opacity-10 bg-blue-500" />
-        <div className="absolute bottom-20 right-20 w-40 h-40 rounded-3xl blur-lg opacity-10 bg-blue-500" />
-        <div className="absolute top-1/2 right-1/3 w-56 h-56 rounded-full blur-xl opacity-10 bg-blue-500" />
-      </div>
-
-      <header className="pt-32 pb-20 px-6 max-w-7xl mx-auto text-center">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={headerVariants}
-        >
-          {/* Badge */}
-          <motion.div
-            variants={headerItem}
-            whileHover={{ 
-              scale: 1.05, 
-              boxShadow: "0 0 12px rgba(37, 99, 235, 0.5)" 
-            }}
-            className="inline-flex items-center px-5 py-3 rounded-full bg-white shadow-lg text-blue-600 font-medium mb-8 cursor-default select-none"
-            aria-label="New template collection"
-          >
-            <FiZap className="mr-2 animate-pulse" />
-            Koleksi Template Terbaru
-          </motion.div>
-
-          {/* Main heading */}
-          <motion.h1
-            variants={headerItem}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
-          >
-            <span className="block text-gray-900">Temukan Template</span>
-            <span className="block bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500">
-              Link in Bio <span className="text-gray-900">Sempurna</span>
-            </span>
-          </motion.h1>
-
-          {/* Subheading */}
-          <motion.p
-            variants={{
-              ...headerItem,
-              visible: { 
-                ...headerItem.visible,
-                transition: { duration: 0.6, delay: 0.1 } 
-              }
-            }}
-            className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-12"
-          >
-            Transformasikan link Anda menjadi pengalaman digital yang memukau dengan koleksi template premium kami
-          </motion.p>
-
-          {/* CTA Button */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: { 
-                opacity: 1, 
-                y: 0, 
-                transition: { 
-                  duration: 0.6, 
-                  ease: "easeOut" 
-                } 
-              }
-            }}
-            whileHover={{ 
-              scale: 1.05, 
-              boxShadow: "0 8px 25px rgba(37, 99, 235, 0.4)" 
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block"
-          >
-            <a
-              href="#templates"
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-xl font-bold shadow-xl hover:shadow-2xl transition-all duration-300"
-              aria-label="Explore templates"
-            >
-              Jelajahi Sekarang <FiArrowRight className="inline ml-2" />
-            </a>
-          </motion.div>
-        </motion.div>
+    <div className="min-h-screen">
+      {/* Navbar */}
+      <header className="sticky top-0 z-40 border-b border-goldu/30 bg-creamu/90 backdrop-blur-xl">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
+          <a href="#" className="flex items-center gap-2.5 font-display text-xl">
+            <span className="segel grid h-9 w-9 place-items-center rounded-full text-creamu"><Mail size={15} /></span>
+            PortalUndangan
+          </a>
+          <a href={WA} target="_blank" rel="noopener noreferrer" className="rounded-full bg-roseu px-5 py-2 text-sm font-bold text-creamu transition hover:bg-inku">
+            Pesan Undangan
+          </a>
+        </nav>
       </header>
 
-      <main id="templates">
-        <section className="py-12 px-6 max-w-7xl mx-auto">
-          {/* Category filters */}
-          <motion.div
-            className="flex overflow-x-auto pb-8 mb-12 scrollbar-hide"
-            initial="initial"
-            animate="animate"
-            variants={{
-              initial: { opacity: 0, y: -20 },
-              animate: { 
-                opacity: 1, 
-                y: 0, 
-                transition: { staggerChildren: 0.08 } 
-              }
-            }}
-            role="list"
-            aria-label="Filter templates by category"
-          >
-            <AnimatePresence initial={false}>
-              {categories.map(category => (
-                <motion.button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`whitespace-nowrap px-6 py-3 rounded-xl font-medium transition-all mx-2 first:ml-0 last:mr-0
-                  ${activeCategory === category
-                    ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'}
-                  `}
-                  variants={filterVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  whileTap={{ scale: 0.95 }}
-                  whileHover={{ scale: 1.05 }}
-                  aria-pressed={activeCategory === category}
-                  role="listitem"
-                  aria-label={`Filter by ${category}`}
-                >
-                  {category}
-                </motion.button>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+      {/* Hero */}
+      <section className="relative px-4 pt-16 pb-12 text-center sm:px-6">
+        <span className="floaty absolute left-[8%] top-16 font-display text-2xl text-goldu/50" aria-hidden="true">✦</span>
+        <span className="floaty absolute right-[10%] top-28 font-display text-xl text-roseu/40" style={{ animationDelay: '1.4s' }} aria-hidden="true">❦</span>
+        <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="mx-auto max-w-3xl">
+          <p className="ornamen text-xs uppercase">— Dengan hormat mengundang —</p>
+          <h1 className="mt-5 font-display text-4xl leading-[1.12] sm:text-6xl">
+            Setiap momen berharga,<br />layak <span className="italic text-roseu">diundang dengan indah</span>.
+          </h1>
+          <p className="mx-auto mt-5 max-w-xl text-mutedu">
+            Delapan undangan digital dengan karakter berbeda — dari akad yang khidmat sampai pesta yang meriah. Dibuka seperti amplop, dibagikan lewat satu tautan.
+          </p>
+          <a href="#koleksi" className="bingkai mt-9 inline-flex items-center gap-2 rounded-none bg-creamu px-8 py-3.5 font-display text-sm tracking-wide text-inku transition hover:bg-goldu/10">
+            Buka Koleksi <ArrowDown size={15} />
+          </a>
+        </motion.div>
+      </section>
 
-          {/* Template grid */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            layout
-            key={activeCategory}
-            role="grid"
-            aria-label="Template cards"
-          >
-            <AnimatePresence>
-              {filteredTemplates.map((template) => (
+      {/* Pembatas ornamen */}
+      <div className="ornamen mx-auto max-w-lg pb-4 text-center text-goldu/60">✦ ✦ ✦</div>
+
+      {/* Koleksi */}
+      <section id="koleksi" className="scroll-mt-24 px-4 pb-20 sm:px-6">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {kategoris.map((k) => (
+              <button
+                key={k}
+                onClick={() => setKat(k)}
+                aria-pressed={kat === k}
+                className={`rounded-full px-5 py-2 text-sm font-semibold transition ${kat === k ? 'bg-inku text-creamu' : 'border border-goldu/40 text-mutedu hover:border-roseu hover:text-roseu'}`}
+              >
+                {k}
+              </button>
+            ))}
+          </div>
+
+          <motion.div layout className="mt-12 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+            <AnimatePresence mode="popLayout">
+              {list.map((t, i) => (
                 <motion.article
-                  key={template.url}
-                  variants={itemVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  whileHover="hover"
-                  whileTap="tap"
+                  key={t.name}
                   layout
-                  className="group h-full rounded-2xl border border-gray-200 shadow-lg overflow-hidden flex flex-col bg-white transition-all duration-300"
-                  role="article"
-                  aria-labelledby={`template-${template.name.replace(/\s+/g, '-').toLowerCase()}-title`}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0, transition: { delay: (i % 4) * 0.07, duration: 0.5 } }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  className="group text-center"
                 >
-                  <div className="relative aspect-square overflow-hidden">
-                    <Image
-                      src={template.image}
-                      alt={`Preview of ${template.name} template`}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-103 hover:rotate-1"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      priority={filteredTemplates.indexOf(template) < 4} // Only prioritize first few images
-                    />
-                  </div>
-                  <div className="p-5 flex-grow flex flex-col">
-                    <h3 
-                      id={`template-${template.name.replace(/\s+/g, '-').toLowerCase()}-title`}
-                      className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors"
-                    >
-                      {template.name}
-                    </h3>
-                    <p className="text-gray-600 mb-4 flex-grow">{template.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {template.tags.map(tag => (
-                        <span
-                          key={tag}
-                          className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-md"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                  <a href={t.url} aria-label={`Lihat undangan ${t.momen}`} className="relative block">
+                    {/* Kartu undangan berbingkai */}
+                    <div className="bingkai relative overflow-hidden bg-white p-2 transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_18px_40px_-18px_rgba(59,49,41,0.4)]">
+                      <div className="relative aspect-[3/4] overflow-hidden">
+                        <Image src={t.image} alt={`Preview undangan ${t.momen}`} fill sizes="(max-width:640px) 100vw, 25vw" className="object-cover object-top" priority={i < 4} />
+                      </div>
                     </div>
-                    <a
-                      href={template.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-block w-full text-center px-4 py-2 bg-blue-50 text-blue-600 rounded-lg font-medium hover:bg-blue-100 transition-colors"
-                      aria-label={`View ${template.name} template details`}
-                    >
-                      Lihat Demo
-                    </a>
-                  </div>
+                    {/* Segel lilin */}
+                    <span className="segel absolute -top-3 left-1/2 grid h-9 w-9 -translate-x-1/2 place-items-center rounded-full font-display text-[10px] text-creamu transition group-hover:rotate-12">
+                      {t.momen[0]}
+                    </span>
+                  </a>
+                  <p className="ornamen mt-4 text-[10px] uppercase">{t.kategori}</p>
+                  <h3 className="mt-1 font-display text-2xl">{t.momen}</h3>
+                  <p className="mx-auto mt-1.5 max-w-[15rem] text-sm text-mutedu">{t.description}</p>
+                  <a href={t.url} className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-roseu underline-offset-4 hover:underline">
+                    Buka undangan <ArrowUpRight size={14} />
+                  </a>
                 </motion.article>
               ))}
             </AnimatePresence>
           </motion.div>
-        </section>
-      </main>
-
-      {/* CTA Section */}
-      <section className="py-20 px-6 bg-gradient-to-br from-blue-50 to-cyan-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 text-gray-900">
-              Siap Membuat Link in Bio <span className="text-blue-600">Profesional?</span>
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-              Mulai dalam 1 menit tanpa perlu keterampilan teknis
-            </p>
-            <motion.a
-              href="https://sanzy.bio/get-started"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
-              whileHover={{ 
-                scale: 1.05, 
-                boxShadow: "0 8px 25px rgba(37, 99, 235, 0.4)" 
-              }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="Get started for free"
-            >
-              Mulai Sekarang Gratis
-            </motion.a>
-          </motion.div>
         </div>
       </section>
+
+      {/* CTA */}
+      <section className="border-t border-goldu/25 bg-inku px-4 py-16 text-center text-creamu sm:px-6">
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mx-auto max-w-xl">
+          <span className="segel mx-auto grid h-14 w-14 place-items-center rounded-full text-creamu"><Heart size={20} /></span>
+          <h2 className="mt-6 font-display text-3xl leading-snug md:text-4xl">Momen spesialmu berikutnya?</h2>
+          <p className="mt-3 text-creamu/60">Nama, tanggal, dan cerita — kami rangkai jadi undangan yang tak terlupakan. Selesai dalam 1–2 hari.</p>
+          <a href={WA} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-roseu px-8 py-4 text-sm font-bold text-creamu transition hover:scale-[1.03] active:scale-95">
+            <MessageCircle size={16} /> Pesan via WhatsApp
+          </a>
+        </motion.div>
+      </section>
+
+      <footer className="bg-inku px-4 py-5 text-center text-xs text-creamu/40">
+        © {new Date().getFullYear()} PortalUndangan · Sanzystore Dev — merangkai undangan sejak dalam pikiran.
+      </footer>
     </div>
   );
 }

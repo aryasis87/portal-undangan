@@ -1,35 +1,43 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-display: var(--font-marcellus), Georgia, serif;
+  --font-sans: var(--font-mulish), system-ui, sans-serif;
+
+  --color-creamu: #faf6ee;
+  --color-inku: #3b3129;
+  --color-roseu: #b76e79;
+  --color-goldu: #b3893f;
+  --color-mutedu: #8b7f72;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: #ffffff;
-  color: #1e293b; /* Tailwind slate-800, gelap tapi adem */
-  font-family: 'Inter', sans-serif;
-  overscroll-behavior-y: contain;
+  background-color: var(--color-creamu);
+  color: var(--color-inku);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.01em; }
+
+/* Bingkai ganda undangan */
+.bingkai { border: 1px solid rgba(179, 137, 63, 0.55); outline: 1px solid rgba(179, 137, 63, 0.3); outline-offset: 5px; }
+
+/* Segel lilin */
+.segel {
+  background: radial-gradient(circle at 35% 30%, #d08a95, var(--color-roseu) 55%, #8f4e59);
+  box-shadow: 0 4px 12px -3px rgba(143, 78, 89, 0.6), inset 0 -2px 4px rgba(0, 0, 0, 0.2);
 }
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+
+/* Kelopak ornamen */
+.ornamen { color: var(--color-goldu); letter-spacing: 0.6em; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 0.8s ease-out both; }
+
+@keyframes floaty { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
+.floaty { animation: floaty 5s ease-in-out infinite; }
+
+:focus-visible { outline: 2px solid var(--color-roseu); outline-offset: 3px; border-radius: 8px; }

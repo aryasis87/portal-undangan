@@ -1,19 +1,19 @@
 import './globals.css';
-// import Header from '../components/Header';
-// import Footer from '../components/Footer';
+import { Marcellus, Mulish } from 'next/font/google';
+
+const marcellus = Marcellus({ subsets: ['latin'], variable: '--font-marcellus', weight: '400' });
+const mulish = Mulish({ subsets: ['latin'], variable: '--font-mulish' });
 
 export const metadata = {
-  title: 'Link in Bio Templates by Sanzy',
-  description: 'Koleksi template link in bio premium untuk personal branding dan bisnis.',
+  title: 'PortalUndangan — Undangan Digital untuk Setiap Momen',
+  description: 'PortalUndangan: 8 undangan digital dengan karakter berbeda — pernikahan, lamaran, khitanan, aqiqah, ulang tahun, wisuda, reuni, dan acara kantor.',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="id">
-      <body className="bg-white text-gray-900">
-        {/* <Header /> */}
+      <body className={`${marcellus.variable} ${mulish.variable} antialiased`}>
         <main>{children}</main>
-        {/* <Footer /> */}
       </body>
     </html>
   );
