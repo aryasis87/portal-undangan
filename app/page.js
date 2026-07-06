@@ -2,25 +2,58 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, ArrowDown, ArrowUpRight, MessageCircle, Heart } from 'lucide-react';
+import { Mail, ArrowDown, ArrowUpRight, MessageCircle, Heart, MailOpen, Timer, Images, MapPin, Music, MessagesSquare, Gift, Users, ChevronDown, PenLine, Send, PartyPopper } from 'lucide-react';
 import { templates } from './components/templates-data';
 
 const WA = 'https://wa.me/6281339908765?text=Halo%2C%20saya%20ingin%20memesan%20undangan%20digital%20di%20PortalUndangan';
 
+const FITUR = [
+  { icon: MailOpen, title: 'Amplop Pembuka', desc: 'Nama tamu tersapa lebih dulu — undangan terbuka seperti amplop sungguhan.' },
+  { icon: Timer, title: 'Hitung Mundur', desc: 'Countdown menuju hari-H yang membuat tamu ikut menanti.' },
+  { icon: Images, title: 'Galeri Momen', desc: 'Foto-foto terbaik kalian tersusun dalam galeri yang elegan.' },
+  { icon: MapPin, title: 'Peta Lokasi', desc: 'Google Maps tertanam — tamu tinggal ketuk untuk berangkat.' },
+  { icon: Music, title: 'Musik Latar', desc: 'Lagu pilihanmu mengiringi setiap gulir layar.' },
+  { icon: Users, title: 'RSVP Kehadiran', desc: 'Tamu konfirmasi hadir dalam satu ketukan; kamu tinggal menghitung kursi.' },
+  { icon: MessagesSquare, title: 'Ucapan & Doa', desc: 'Buku tamu digital yang menyimpan setiap doa terbaik.' },
+  { icon: Gift, title: 'Amplop Digital', desc: 'Kado tanpa repot — nomor rekening & e-wallet tersaji sopan.' },
+];
+
+const LANGKAH = [
+  { icon: Heart, no: 'I', title: 'Pilih Tema', desc: 'Telusuri delapan tema di koleksi, pilih yang paling terasa "kalian".' },
+  { icon: PenLine, no: 'II', title: 'Kirim Cerita', desc: 'Nama, tanggal, lokasi, foto, dan kisahmu — kirim lewat WhatsApp.' },
+  { icon: Send, no: 'III', title: 'Kami Rangkai', desc: 'Dalam 1–2 hari undangan jadi, lengkap dengan revisi hingga pas.' },
+  { icon: PartyPopper, no: 'IV', title: 'Sebarkan', desc: 'Satu tautan untuk semua tamu — bagikan lewat WA, IG, atau email.' },
+];
+
+const TANYA = [
+  { q: 'Berapa lama undangan selesai dibuat?', a: 'Umumnya 1–2 hari kerja setelah data lengkap kami terima. Untuk kebutuhan mendesak, sampaikan tanggal acaramu — kami usahakan prioritas.' },
+  { q: 'Apakah nama, foto, dan cerita bisa diganti sesuai acara saya?', a: 'Tentu. Semua teks, foto, warna aksen, musik, dan detail acara disesuaikan sepenuhnya dengan momenmu. Tema hanyalah kanvas awalnya.' },
+  { q: 'Apakah tamu bisa konfirmasi kehadiran?', a: 'Bisa. Setiap undangan dilengkapi formulir RSVP dan buku ucapan digital, sehingga kamu tahu siapa saja yang hadir beserta doa-doa mereka.' },
+  { q: 'Bagaimana cara membagikan undangannya?', a: 'Kamu menerima satu tautan pribadi. Bagikan lewat WhatsApp, Instagram, atau email — tamu tinggal membuka, tanpa unduh aplikasi apa pun.' },
+  { q: 'Apakah ada revisi jika ada yang keliru?', a: 'Ada. Revisi teks dan detail termasuk dalam paket sampai undanganmu benar-benar pas. Kami baru selesai ketika kamu tersenyum puas.' },
+];
+
 export default function PortalUndangan() {
   const [kat, setKat] = useState('Semua');
+  const [buka, setBuka] = useState(0);
   const kategoris = ['Semua', ...new Set(templates.map((t) => t.kategori))];
   const list = kat === 'Semua' ? templates : templates.filter((t) => t.kategori === kat);
 
   return (
-    <div className="min-h-screen">
+    <div id="top" className="min-h-screen">
       {/* Navbar */}
       <header className="sticky top-0 z-40 border-b border-goldu/30 bg-creamu/90 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
-          <a href="/" className="flex items-center gap-2.5 font-display text-xl">
+          <a href="#top" className="flex items-center gap-2.5 font-display text-xl">
             <span className="segel grid h-9 w-9 place-items-center rounded-full text-creamu"><Mail size={15} /></span>
             PortalUndangan
           </a>
+          <div className="hidden items-center gap-6 text-sm font-semibold text-mutedu md:flex" role="navigation" aria-label="Navigasi">
+            <a href="#koleksi" className="transition hover:text-roseu">Koleksi</a>
+            <a href="#fitur" className="transition hover:text-roseu">Fitur</a>
+            <a href="#cara" className="transition hover:text-roseu">Cara Pesan</a>
+            <a href="#tanya" className="transition hover:text-roseu">Tanya Jawab</a>
+          </div>
           <a href={WA} target="_blank" rel="noopener noreferrer" className="rounded-full bg-roseu px-5 py-2 text-sm font-bold text-creamu transition hover:bg-inku">
             Pesan Undangan
           </a>
@@ -42,6 +75,20 @@ export default function PortalUndangan() {
           <a href="#koleksi" className="bingkai mt-9 inline-flex items-center gap-2 rounded-none bg-creamu px-8 py-3.5 font-display text-sm tracking-wide text-inku transition hover:bg-goldu/10">
             Buka Koleksi <ArrowDown size={15} />
           </a>
+
+          {/* Angka kecil yang meyakinkan */}
+          <div className="mx-auto mt-10 flex max-w-md items-center justify-center divide-x divide-goldu/30 border-y border-goldu/25 py-4">
+            {[
+              { v: '8', l: 'Tema Eksklusif' },
+              { v: '1–2 hari', l: 'Waktu Pengerjaan' },
+              { v: '∞', l: 'Revisi Teks' },
+            ].map((s) => (
+              <div key={s.l} className="flex-1 px-3 text-center">
+                <p className="font-display text-2xl text-roseu">{s.v}</p>
+                <p className="ornamen mt-0.5 text-[10px] uppercase">{s.l}</p>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </section>
 
@@ -100,6 +147,97 @@ export default function PortalUndangan() {
         </div>
       </section>
 
+      {/* Fitur — isi amplop */}
+      <section id="fitur" className="scroll-mt-24 border-t border-goldu/25 bg-white/60 px-4 py-16 sm:px-6 lg:py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center">
+            <p className="ornamen text-xs uppercase">— Di dalam setiap amplop —</p>
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl">Lengkap sampai <span className="italic text-roseu">detail terkecil</span></h2>
+            <p className="mx-auto mt-4 max-w-xl text-mutedu">Delapan fitur yang membuat undangan digitalmu terasa hidup — bukan sekadar halaman berisi tanggal.</p>
+          </div>
+          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {FITUR.map((f, i) => (
+              <motion.div
+                key={f.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, delay: (i % 4) * 0.07 }}
+                className="bingkai bg-creamu p-6 text-center transition duration-300 hover:-translate-y-1"
+              >
+                <span className="mx-auto grid h-11 w-11 place-items-center rounded-full border border-goldu/40 text-roseu">
+                  <f.icon size={19} />
+                </span>
+                <h3 className="mt-4 font-display text-xl">{f.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-mutedu">{f.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Cara pesan — empat bab */}
+      <section id="cara" className="scroll-mt-24 px-4 py-16 sm:px-6 lg:py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center">
+            <p className="ornamen text-xs uppercase">— Dari cerita menjadi undangan —</p>
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl">Empat bab <span className="italic text-roseu">menuju hari bahagia</span></h2>
+          </div>
+          <div className="relative mt-14 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            <span className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-goldu/50 to-transparent lg:block" aria-hidden="true" />
+            {LANGKAH.map((s, i) => (
+              <motion.div
+                key={s.no}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+                className="relative text-center"
+              >
+                <span className="segel relative z-10 mx-auto grid h-14 w-14 place-items-center rounded-full text-creamu">
+                  <s.icon size={20} />
+                </span>
+                <p className="ornamen mt-4 text-[10px] uppercase">Bab {s.no}</p>
+                <h3 className="mt-1 font-display text-2xl">{s.title}</h3>
+                <p className="mx-auto mt-2 max-w-[15rem] text-sm leading-relaxed text-mutedu">{s.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tanya jawab */}
+      <section id="tanya" className="scroll-mt-24 border-t border-goldu/25 bg-white/60 px-4 py-16 sm:px-6 lg:py-20">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <p className="ornamen text-xs uppercase">— Sebelum kamu bertanya —</p>
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl">Tanya <span className="italic text-roseu">jawab</span></h2>
+          </div>
+          <div className="mt-10 space-y-3">
+            {TANYA.map((t, i) => {
+              const open = buka === i;
+              return (
+                <div key={t.q} className={`bingkai bg-creamu transition ${open ? 'shadow-[0_12px_30px_-18px_rgba(59,49,41,0.45)]' : ''}`}>
+                  <button
+                    onClick={() => setBuka(open ? -1 : i)}
+                    aria-expanded={open}
+                    className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left"
+                  >
+                    <span className="font-display text-lg leading-snug">{t.q}</span>
+                    <ChevronDown size={18} className={`shrink-0 text-roseu transition-transform ${open ? 'rotate-180' : ''}`} />
+                  </button>
+                  {open && (
+                    <div className="border-t border-goldu/25 px-6 py-4">
+                      <p className="text-sm leading-relaxed text-mutedu">{t.a}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="border-t border-goldu/25 bg-inku px-4 py-16 text-center text-creamu sm:px-6">
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mx-auto max-w-xl">
@@ -112,8 +250,35 @@ export default function PortalUndangan() {
         </motion.div>
       </section>
 
-      <footer className="bg-inku px-4 py-5 text-center text-xs text-creamu/40">
-        © {new Date().getFullYear()} PortalUndangan · Sanzystore Dev — merangkai undangan sejak dalam pikiran.
+      <footer className="border-t border-creamu/10 bg-inku px-4 pb-6 pt-10 text-creamu/60">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 text-center sm:grid-cols-3 sm:text-left">
+          <div>
+            <p className="flex items-center justify-center gap-2 font-display text-lg text-creamu sm:justify-start">
+              <span className="segel grid h-7 w-7 place-items-center rounded-full text-creamu"><Mail size={12} /></span>
+              PortalUndangan
+            </p>
+            <p className="mt-2 text-sm leading-relaxed">Undangan digital untuk setiap momen — dibuka seperti amplop, dibagikan lewat satu tautan.</p>
+          </div>
+          <nav aria-label="Tautan footer" className="text-sm">
+            <p className="ornamen text-[10px] uppercase text-goldu/70">Jelajahi</p>
+            <ul className="mt-3 space-y-2">
+              <li><a href="#koleksi" className="transition hover:text-creamu">Koleksi Tema</a></li>
+              <li><a href="#fitur" className="transition hover:text-creamu">Fitur Undangan</a></li>
+              <li><a href="#cara" className="transition hover:text-creamu">Cara Pesan</a></li>
+              <li><a href="#tanya" className="transition hover:text-creamu">Tanya Jawab</a></li>
+            </ul>
+          </nav>
+          <div className="text-sm">
+            <p className="ornamen text-[10px] uppercase text-goldu/70">Hubungi</p>
+            <ul className="mt-3 space-y-2">
+              <li><a href={WA} target="_blank" rel="noopener noreferrer" className="transition hover:text-creamu">WhatsApp +62 813 3990 8765</a></li>
+              <li><a href="https://pintuweb.com" target="_blank" rel="noopener noreferrer" className="transition hover:text-creamu">pintuweb.com</a></li>
+            </ul>
+          </div>
+        </div>
+        <p className="mt-10 border-t border-creamu/10 pt-5 text-center text-xs text-creamu/40">
+          © {new Date().getFullYear()} PortalUndangan · bagian dari PintuWeb — merangkai undangan sejak dalam pikiran.
+        </p>
       </footer>
     </div>
   );
