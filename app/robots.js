@@ -1,7 +1,7 @@
 export default function robots() {
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://undangan.pintuweb.com/sitemap.xml",
-    host: "https://undangan.pintuweb.com",
+    sitemap: "https://portal-undangan-eta.vercel.app/sitemap.xml",
+    host: "https://portal-undangan-eta.vercel.app",
   };
 }
