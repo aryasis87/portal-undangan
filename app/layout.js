@@ -4,7 +4,7 @@ import { Marcellus, Mulish } from 'next/font/google';
 const marcellus = Marcellus({ subsets: ['latin'], variable: '--font-marcellus', weight: '400' });
 const mulish = Mulish({ subsets: ['latin'], variable: '--font-mulish' });
 
-const __jsonld = {"@context":"https://schema.org","@type":"CollectionPage","name":"PortalUndangan","description":"Koleksi 8 undangan digital","url":"https://portal-undangan-eta.vercel.app","isPartOf":{"@type":"WebSite","name":"PintuWeb","url":"https://pintuweb.com"}};
+const __jsonld = {"@context":"https://schema.org","@type":"CollectionPage","name":"PortalUndangan","description":"Koleksi 8 undangan digital","url":"https://portal-undangan-eta.vercel.app","isPartOf":{"@type":"WebSite","name":"PintuWeb","url":"https://www.pintuweb.com"}};
 
 export const metadata = {
   metadataBase: new URL("https://portal-undangan-eta.vercel.app"),

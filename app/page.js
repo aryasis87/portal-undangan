@@ -21,16 +21,16 @@ const FITUR = [
 const LANGKAH = [
   { icon: Heart, no: 'I', title: 'Pilih Tema', desc: 'Telusuri delapan tema di koleksi, pilih yang paling terasa "kalian".' },
   { icon: PenLine, no: 'II', title: 'Kirim Cerita', desc: 'Nama, tanggal, lokasi, foto, dan kisahmu — kirim lewat WhatsApp.' },
-  { icon: Send, no: 'III', title: 'Kami Rangkai', desc: 'Dalam 1–2 hari undangan jadi, lengkap dengan revisi hingga pas.' },
+  { icon: Send, no: 'III', title: 'Kami Rangkai', desc: 'Undangan kami rangkai dari ceritamu, lalu kamu periksa dulu sebelum dibagikan.' },
   { icon: PartyPopper, no: 'IV', title: 'Sebarkan', desc: 'Ketik daftar tamu di halaman /kirim — tiap nama dapat tautan dan pesan WhatsApp siap kirim.' },
 ];
 
 const TANYA = [
-  { q: 'Berapa lama undangan selesai dibuat?', a: 'Umumnya 1–2 hari kerja setelah data lengkap kami terima. Untuk kebutuhan mendesak, sampaikan tanggal acaramu — kami usahakan prioritas.' },
+  { q: 'Berapa lama undangan selesai dibuat?', a: 'Tergantung kelengkapan data dan tanggal acaramu. Sampaikan tanggalnya lewat WhatsApp — kami beri estimasi waktu sebelum mulai, dan kebutuhan mendesak kami usahakan.' },
   { q: 'Apakah nama, foto, dan cerita bisa diganti sesuai acara saya?', a: 'Tentu. Semua teks, foto, warna aksen, musik, dan detail acara disesuaikan sepenuhnya dengan momenmu. Tema hanyalah kanvas awalnya.' },
   { q: 'Apakah tamu bisa konfirmasi kehadiran?', a: 'Bisa. Formulir RSVP (atau pendaftaran peserta untuk acara kantor) dan buku ucapan bisa dipasang di tema mana pun. Contoh di galeri ini berjalan dalam mode demo, jadi isian tidak disimpan.' },
   { q: 'Bagaimana cara membagikan undangannya?', a: 'Setiap tema punya halaman /kirim: ketik daftar tamu, lalu tiap nama mendapat tautan yang menyapanya di sampul beserta pesan WhatsApp siap kirim. Tamu tinggal membuka, tanpa unduh aplikasi apa pun.' },
-  { q: 'Apakah ada revisi jika ada yang keliru?', a: 'Ada. Revisi teks dan detail termasuk dalam paket sampai undanganmu benar-benar pas. Kami baru selesai ketika kamu tersenyum puas.' },
+  { q: 'Apakah ada revisi jika ada yang keliru?', a: 'Ada. Kamu memeriksa undangan sebelum dibagikan, dan kesalahan teks atau detail kami perbaiki. Jatah revisinya kami sampaikan di awal, bersama estimasi waktu.' },
 ];
 
 export default function PortalUndangan() {
@@ -80,8 +80,8 @@ export default function PortalUndangan() {
           <div className="mx-auto mt-10 flex max-w-md items-center justify-center divide-x divide-goldu/30 border-y border-goldu/25 py-4">
             {[
               { v: '8', l: 'Tema Eksklusif' },
-              { v: '1–2 hari', l: 'Waktu Pengerjaan' },
-              { v: '∞', l: 'Revisi Teks' },
+              { v: '7', l: 'Musik Latar' },
+              { v: '360 px', l: 'Ramah Layar Kecil' },
             ].map((s) => (
               <div key={s.l} className="min-w-0 flex-1 px-2 text-center sm:px-3">
                 <p className="font-display text-2xl text-roseu">{s.v}</p>
@@ -243,7 +243,7 @@ export default function PortalUndangan() {
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mx-auto max-w-xl">
           <span className="segel mx-auto grid h-14 w-14 place-items-center rounded-full text-creamu"><Heart size={20} /></span>
           <h2 className="mt-6 font-display text-3xl leading-snug md:text-4xl">Momen spesialmu berikutnya?</h2>
-          <p className="mt-3 text-creamu/60">Nama, tanggal, dan cerita — kami rangkai jadi undangan yang tak terlupakan. Selesai dalam 1–2 hari.</p>
+          <p className="mt-3 text-creamu/60">Nama, tanggal, dan cerita — kami rangkai jadi undangan yang tak terlupakan.</p>
           <a href={WA} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-roseu px-8 py-4 text-sm font-bold text-creamu transition hover:scale-[1.03] active:scale-95">
             <MessageCircle size={16} /> Pesan via WhatsApp
           </a>
@@ -272,7 +272,7 @@ export default function PortalUndangan() {
             <p className="ornamen text-[10px] uppercase text-[#d6b77f]">Hubungi</p>
             <ul className="mt-3 space-y-2">
               <li><a href={WA} target="_blank" rel="noopener noreferrer" className="transition hover:text-creamu">WhatsApp +62 813 3990 8765</a></li>
-              <li><a href="https://pintuweb.com" target="_blank" rel="noopener noreferrer" className="transition hover:text-creamu">pintuweb.com</a></li>
+              <li><a href="https://www.pintuweb.com" target="_blank" rel="noopener noreferrer" className="transition hover:text-creamu">pintuweb.com</a></li>
             </ul>
           </div>
         </div>
