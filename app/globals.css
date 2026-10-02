@@ -6,9 +6,9 @@
 
   --color-creamu: #faf6ee;
   --color-inku: #3b3129;
-  --color-roseu: #b76e79;
-  --color-goldu: #b3893f;
-  --color-mutedu: #8b7f72;
+  --color-roseu: #a2505d;
+  --color-goldu: #8a6930;
+  --color-mutedu: #72685d;
 }
 
 html { scroll-behavior: smooth; }
@@ -32,7 +32,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 }
 
 /* Kelopak ornamen */
-.ornamen { color: var(--color-goldu); letter-spacing: 0.6em; }
+@layer components {
+  .ornamen { color: var(--color-goldu); letter-spacing: 0.6em; }
+}
 
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .rise { animation: rise 0.8s ease-out both; }

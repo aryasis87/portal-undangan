@@ -8,11 +8,11 @@ import { templates } from './components/templates-data';
 const WA = 'https://wa.me/6281339908765?text=Halo%2C%20saya%20ingin%20memesan%20undangan%20digital%20di%20PortalUndangan';
 
 const FITUR = [
-  { icon: MailOpen, title: 'Amplop Pembuka', desc: 'Nama tamu tersapa lebih dulu — undangan terbuka seperti amplop sungguhan.' },
+  { icon: MailOpen, title: 'Amplop Pembuka', desc: 'Nama tamu tersapa lebih dulu. Tiap tamu mendapat tautan bernama sendiri, dibuat lewat halaman /kirim.' },
   { icon: Timer, title: 'Hitung Mundur', desc: 'Countdown menuju hari-H yang membuat tamu ikut menanti.' },
   { icon: Images, title: 'Galeri Momen', desc: 'Foto-foto terbaik kalian tersusun dalam galeri yang elegan.' },
   { icon: MapPin, title: 'Peta Lokasi', desc: 'Google Maps tertanam — tamu tinggal ketuk untuk berangkat.' },
-  { icon: Music, title: 'Musik Latar', desc: 'Lagu pilihanmu mengiringi setiap gulir layar.' },
+  { icon: Music, title: 'Musik Latar', desc: 'Lagu pilihanmu mengiringi setiap gulir layar — dengan tombol jeda untuk tamu.' },
   { icon: Users, title: 'RSVP Kehadiran', desc: 'Tamu konfirmasi hadir dalam satu ketukan; kamu tinggal menghitung kursi.' },
   { icon: MessagesSquare, title: 'Ucapan & Doa', desc: 'Buku tamu digital yang menyimpan setiap doa terbaik.' },
   { icon: Gift, title: 'Amplop Digital', desc: 'Kado tanpa repot — nomor rekening & e-wallet tersaji sopan.' },
@@ -22,14 +22,14 @@ const LANGKAH = [
   { icon: Heart, no: 'I', title: 'Pilih Tema', desc: 'Telusuri delapan tema di koleksi, pilih yang paling terasa "kalian".' },
   { icon: PenLine, no: 'II', title: 'Kirim Cerita', desc: 'Nama, tanggal, lokasi, foto, dan kisahmu — kirim lewat WhatsApp.' },
   { icon: Send, no: 'III', title: 'Kami Rangkai', desc: 'Dalam 1–2 hari undangan jadi, lengkap dengan revisi hingga pas.' },
-  { icon: PartyPopper, no: 'IV', title: 'Sebarkan', desc: 'Satu tautan untuk semua tamu — bagikan lewat WA, IG, atau email.' },
+  { icon: PartyPopper, no: 'IV', title: 'Sebarkan', desc: 'Ketik daftar tamu di halaman /kirim — tiap nama dapat tautan dan pesan WhatsApp siap kirim.' },
 ];
 
 const TANYA = [
   { q: 'Berapa lama undangan selesai dibuat?', a: 'Umumnya 1–2 hari kerja setelah data lengkap kami terima. Untuk kebutuhan mendesak, sampaikan tanggal acaramu — kami usahakan prioritas.' },
   { q: 'Apakah nama, foto, dan cerita bisa diganti sesuai acara saya?', a: 'Tentu. Semua teks, foto, warna aksen, musik, dan detail acara disesuaikan sepenuhnya dengan momenmu. Tema hanyalah kanvas awalnya.' },
-  { q: 'Apakah tamu bisa konfirmasi kehadiran?', a: 'Bisa. Setiap undangan dilengkapi formulir RSVP dan buku ucapan digital, sehingga kamu tahu siapa saja yang hadir beserta doa-doa mereka.' },
-  { q: 'Bagaimana cara membagikan undangannya?', a: 'Kamu menerima satu tautan pribadi. Bagikan lewat WhatsApp, Instagram, atau email — tamu tinggal membuka, tanpa unduh aplikasi apa pun.' },
+  { q: 'Apakah tamu bisa konfirmasi kehadiran?', a: 'Bisa. Formulir RSVP (atau pendaftaran peserta untuk acara kantor) dan buku ucapan bisa dipasang di tema mana pun. Contoh di galeri ini berjalan dalam mode demo, jadi isian tidak disimpan.' },
+  { q: 'Bagaimana cara membagikan undangannya?', a: 'Setiap tema punya halaman /kirim: ketik daftar tamu, lalu tiap nama mendapat tautan yang menyapanya di sampul beserta pesan WhatsApp siap kirim. Tamu tinggal membuka, tanpa unduh aplikasi apa pun.' },
   { q: 'Apakah ada revisi jika ada yang keliru?', a: 'Ada. Revisi teks dan detail termasuk dalam paket sampai undanganmu benar-benar pas. Kami baru selesai ketika kamu tersenyum puas.' },
 ];
 
@@ -83,9 +83,9 @@ export default function PortalUndangan() {
               { v: '1–2 hari', l: 'Waktu Pengerjaan' },
               { v: '∞', l: 'Revisi Teks' },
             ].map((s) => (
-              <div key={s.l} className="flex-1 px-3 text-center">
+              <div key={s.l} className="min-w-0 flex-1 px-2 text-center sm:px-3">
                 <p className="font-display text-2xl text-roseu">{s.v}</p>
-                <p className="ornamen mt-0.5 text-[10px] uppercase">{s.l}</p>
+                <p className="ornamen mt-0.5 text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.6em]">{s.l}</p>
               </div>
             ))}
           </div>
@@ -260,7 +260,7 @@ export default function PortalUndangan() {
             <p className="mt-2 text-sm leading-relaxed">Undangan digital untuk setiap momen — dibuka seperti amplop, dibagikan lewat satu tautan.</p>
           </div>
           <nav aria-label="Tautan footer" className="text-sm">
-            <p className="ornamen text-[10px] uppercase text-goldu/70">Jelajahi</p>
+            <p className="ornamen text-[10px] uppercase text-[#d6b77f]">Jelajahi</p>
             <ul className="mt-3 space-y-2">
               <li><a href="#koleksi" className="transition hover:text-creamu">Koleksi Tema</a></li>
               <li><a href="#fitur" className="transition hover:text-creamu">Fitur Undangan</a></li>
@@ -269,14 +269,14 @@ export default function PortalUndangan() {
             </ul>
           </nav>
           <div className="text-sm">
-            <p className="ornamen text-[10px] uppercase text-goldu/70">Hubungi</p>
+            <p className="ornamen text-[10px] uppercase text-[#d6b77f]">Hubungi</p>
             <ul className="mt-3 space-y-2">
               <li><a href={WA} target="_blank" rel="noopener noreferrer" className="transition hover:text-creamu">WhatsApp +62 813 3990 8765</a></li>
               <li><a href="https://pintuweb.com" target="_blank" rel="noopener noreferrer" className="transition hover:text-creamu">pintuweb.com</a></li>
             </ul>
           </div>
         </div>
-        <p className="mt-10 border-t border-creamu/10 pt-5 text-center text-xs text-creamu/40">
+        <p className="mt-10 border-t border-creamu/10 pt-5 text-center text-xs text-creamu/70">
           © {new Date().getFullYear()} PortalUndangan · bagian dari PintuWeb — merangkai undangan sejak dalam pikiran.
         </p>
       </footer>
