@@ -26,7 +26,8 @@ const LANGKAH = [
 ];
 
 const TANYA = [
-  { q: 'Berapa lama undangan selesai dibuat?', a: 'Tergantung kelengkapan data dan tanggal acaramu. Sampaikan tanggalnya lewat WhatsApp — kami beri estimasi waktu sebelum mulai, dan kebutuhan mendesak kami usahakan.' },
+  { q: 'Berapa lama undangan selesai dibuat?', a: 'Undangan dari tema di galeri ini biasanya selesai 1–2 hari kerja setelah data acara lengkap; situs acara dengan desain khusus 3–7 hari kerja. Sampaikan tanggal acaramu lewat WhatsApp supaya jadwalnya pas.' },
+  { q: 'Berapa harganya?', a: 'Undangan dari tema galeri Rp150 ribu–Rp450 ribu, aktif 12 bulan tanpa biaya perpanjangan. Untuk acara kantor, seminar, atau desain khusus, paket Situs Acara & Undangan Custom Rp1 juta–Rp2,5 juta.' },
   { q: 'Apakah nama, foto, dan cerita bisa diganti sesuai acara saya?', a: 'Tentu. Semua teks, foto, warna aksen, musik, dan detail acara disesuaikan sepenuhnya dengan momenmu. Tema hanyalah kanvas awalnya.' },
   { q: 'Apakah tamu bisa konfirmasi kehadiran?', a: 'Bisa. Formulir RSVP (atau pendaftaran peserta untuk acara kantor) dan buku ucapan bisa dipasang di tema mana pun. Contoh di galeri ini berjalan dalam mode demo, jadi isian tidak disimpan.' },
   { q: 'Bagaimana cara membagikan undangannya?', a: 'Setiap tema punya halaman /kirim: ketik daftar tamu, lalu tiap nama mendapat tautan yang menyapanya di sampul beserta pesan WhatsApp siap kirim. Tamu tinggal membuka, tanpa unduh aplikasi apa pun.' },
