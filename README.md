@@ -2,7 +2,7 @@
 
 PortalUndangan: 8 undangan digital dengan karakter berbeda — pernikahan, lamaran, khitanan, aqiqah, ulang tahun, wisuda, reuni, dan korporat.
 
-**Demo live:** https://portal-undangan-eta.vercel.app
+**Demo live:** https://www.pintuweb.com/undangan-digital
 
 ![Tangkapan layar PortalUndangan](public/og.jpg)
 
