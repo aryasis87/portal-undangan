@@ -137,6 +137,7 @@ export default function PortalUndangan() {
                   <p className="ornamen mt-4 text-[10px] uppercase">{t.kategori}</p>
                   <h3 className="mt-1 font-display text-2xl">{t.momen}</h3>
                   <p className="mx-auto mt-1.5 max-w-[15rem] text-sm text-mutedu">{t.description}</p>
+                  {t.terjual > 0 && <p className="mt-2 text-xs font-semibold tracking-[0.15em] text-inku"><span className="text-goldu" aria-hidden="true">✦</span> {t.terjual} terjual <span className="text-goldu" aria-hidden="true">✦</span></p>}
                   <a href={t.url} className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-roseu underline-offset-4 hover:underline">
                     Buka undangan <ArrowUpRight size={14} />
                   </a>
