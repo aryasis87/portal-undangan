@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, ArrowDown, ArrowUpRight, MessageCircle, Heart, MailOpen, Timer, Images, MapPin, Music, MessagesSquare, Gift, Users, ChevronDown, PenLine, Send, PartyPopper } from 'lucide-react';
 import { templates } from './components/templates-data';
 
-const WA = 'https://wa.me/6281339908765?text=Halo%2C%20saya%20ingin%20memesan%20undangan%20digital%20di%20PortalUndangan';
+const WA = 'https://wa.me/6285190931399?text=Halo%2C%20saya%20ingin%20memesan%20undangan%20digital%20di%20PortalUndangan';
 
 const FITUR = [
   { icon: MailOpen, title: 'Amplop Pembuka', desc: 'Nama tamu tersapa lebih dulu. Tiap tamu mendapat tautan bernama sendiri, dibuat lewat halaman /kirim.' },
@@ -27,7 +27,7 @@ const LANGKAH = [
 
 const TANYA = [
   { q: 'Berapa lama undangan selesai dibuat?', a: 'Undangan dari tema di galeri ini biasanya selesai 1–2 hari kerja setelah data acara lengkap; situs acara dengan desain khusus 3–7 hari kerja. Sampaikan tanggal acaramu lewat WhatsApp supaya jadwalnya pas.' },
-  { q: 'Berapa harganya?', a: 'Undangan dari tema galeri Rp150 ribu–Rp450 ribu, aktif 12 bulan tanpa biaya perpanjangan. Untuk acara kantor, seminar, atau desain khusus, paket Situs Acara & Undangan Custom Rp1 juta–Rp2,5 juta.' },
+  { q: 'Berapa harganya?', a: 'Undangan dari tema galeri Rp75 ribu–Rp225 ribu, aktif 12 bulan tanpa biaya perpanjangan. Untuk acara kantor, seminar, atau desain khusus, paket Situs Acara & Undangan Custom Rp500 ribu–Rp1,25 juta.' },
   { q: 'Apakah nama, foto, dan cerita bisa diganti sesuai acara saya?', a: 'Tentu. Semua teks, foto, warna aksen, musik, dan detail acara disesuaikan sepenuhnya dengan momenmu. Tema hanyalah kanvas awalnya.' },
   { q: 'Apakah tamu bisa konfirmasi kehadiran?', a: 'Bisa. Formulir RSVP (atau pendaftaran peserta untuk acara kantor) dan buku ucapan bisa dipasang di tema mana pun. Contoh di galeri ini berjalan dalam mode demo, jadi isian tidak disimpan.' },
   { q: 'Bagaimana cara membagikan undangannya?', a: 'Setiap tema punya halaman /kirim: ketik daftar tamu, lalu tiap nama mendapat tautan yang menyapanya di sampul beserta pesan WhatsApp siap kirim. Tamu tinggal membuka, tanpa unduh aplikasi apa pun.' },
@@ -281,7 +281,7 @@ export default function PortalUndangan() {
           <div className="text-sm">
             <p className="ornamen text-[10px] uppercase text-[#d6b77f]">Hubungi</p>
             <ul className="mt-3 space-y-2">
-              <li><a href={WA} target="_blank" rel="noopener noreferrer" className="transition hover:text-creamu">WhatsApp +62 813 3990 8765</a></li>
+              <li><a href={WA} target="_blank" rel="noopener noreferrer" className="transition hover:text-creamu">WhatsApp +62 851 9093 1399</a></li>
               <li><a href="https://www.pintuweb.com" className="transition hover:text-creamu">pintuweb.com</a></li>
             </ul>
           </div>
